@@ -100,6 +100,8 @@ NEXT_PUBLIC_TAMBO_API_KEY=your_tambo_api_key
 ### 3. Install & Run
 
 ```bash
+git clone https://github.com/tosif121/warroom-incident-commander.git
+cd warroom-incident-commander
 npm install
 npm run dev
 ```
