@@ -192,41 +192,6 @@ npm run dev
 
 ---
 
-## 🎯 Tambo Hackathon: Why We'll Win
-
-### Challenge Interpretation
-
-**"The UI Strikes Back"** = Make the UI intelligent, not just pretty.
-
-### Our Innovation
-
-1. **Not a chatbot, an AI commander**
-   - Tambo doesn't just answer questions
-   - It detects, categorizes, and orchestrates response
-
-2. **Generative UI at scale**
-   - First monitoring tool where UI adapts to problem
-   - `ui_config` JSONB = blueprint for dynamic rendering
-
-3. **Production-ready from day 1**
-   - Zero-config onboarding
-   - Real database monitoring
-   - Multi-language support
-
-### Judging Criteria Score
-
-| Criteria                    | Our Delivery                   | Score |
-| --------------------------- | ------------------------------ | ----- |
-| **Potential Impact (30%)**  | Reduces MTTR 80% (30min→6min)  | 28/30 |
-| **Creativity (25%)**        | Generative UI + Multi-language | 24/25 |
-| **Best Use of Tambo (20%)** | AI commander, not chatbot      | 19/20 |
-| **Technical (15%)**         | Real-time + External DB        | 14/15 |
-| **Aesthetics (10%)**        | Framer Motion + Dark mode      | 9/10  |
-
-**Total: 94/100** 🏆
-
----
-
 ## 📂 Project Structure
 
 ```
