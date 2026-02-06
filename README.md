@@ -143,7 +143,7 @@ graph TD
 
 **Stack:**
 
-- Frontend: Next.js 14, Framer Motion, Recharts
+- Frontend: Next.js 16, Framer Motion, Recharts
 - Backend: Supabase (Postgres, Realtime, RPC)
 - AI: Tambo + Perplexity API
 - Real-time: Custom `useLiveMonitor` hook
@@ -188,56 +188,6 @@ PERPLEXITY_API_KEY=your_perplexity_key
 ```bash
 npm run dev
 # Open http://localhost:3000
-```
-
----
-
-## 🎬 Demo Script (Impress Judges in 2 Minutes)
-
-### Scene 1: Onboarding (0:00-0:30)
-
-```
-1. Show empty state
-2. Paste Supabase credentials
-3. AI scans schema
-4. Select "orders" and "error_logs" tables
-5. Click "Start Monitoring"
-→ Dashboard goes live in < 30 seconds
-```
-
-### Scene 2: Multi-Language Magic (0:30-1:00)
-
-```
-1. Type in chat: "Payment failing"
-   → Dashboard turns red, shows error graph
-2. Resolve incident
-3. Type in Hindi: "Checkout band ho gayi"
-   → Works perfectly!
-4. Text overlay: "Works in any language"
-```
-
-### Scene 3: Real Monitoring (1:00-1:30)
-
-```
-1. Split screen: Supabase + Data Guard
-2. Insert failed orders in SQL:
-   INSERT INTO orders (status) VALUES ('failed');
-3. Data Guard detects in 5 seconds
-4. Auto-creates incident
-5. Shows REAL data in graphs
-→ Text: "Real-time monitoring, not fake data"
-```
-
-### Scene 4: One-Click Fix (1:30-2:00)
-
-```
-1. Click "Rollback Deployment" button
-2. Timeline shows:
-   - 🔄 Initiating rollback...
-   - ⏳ Rolling back deployment...
-   - ✅ Rollback complete
-3. Dashboard turns green
-4. End card: "30 seconds to monitor. 3 seconds to fix."
 ```
 
 ---
@@ -351,7 +301,7 @@ Built for **Tambo Hackathon 2026** with:
 - Tambo AI - Natural language incident detection
 - Supabase - Realtime database & auth
 - Perplexity - AI analysis engine
-- Next.js 14 - Full-stack framework
+- Next.js 16 - Full-stack framework
 
 ---
 
