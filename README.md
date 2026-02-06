@@ -287,6 +287,62 @@ MIT License - Build whatever you want with this!
 
 ---
 
+## 🎭 Official Demo Scenarios (Step-by-Step)
+
+Use these scenarios to test the system or record your demo video.
+
+### 🎮 How to Execute
+
+1.  **Open the App**: Go to `http://localhost:3000`.
+2.  **Locate Chat**: Find the main chat input bar at the bottom.
+3.  **Type & Enter**: Copy the **"Type this"** text below.
+
+---
+
+### 🟢 1. The "Red Alert" (Visual Spike)
+
+**Context:** Payment API outage.
+
+> "The Payment API is throwing 500 errors everywhere!"
+
+**Result:** Status turns **CRITICAL** (Red). Shows `ErrorGraph` and "Rollback" button.
+
+### 🟢 2. The "Desi Developer" (Hinglish Support)
+
+**Context:** Multilingual AI understanding.
+
+> "Yaar pura database phat gaya hai, queries atak rahi hain"
+
+**Result:** AI detects "Database Latency". Shows `LatencyGraph` and "Kill Queries" button.
+
+### 🟢 3. The "Chaos Mode" (Traffic Spike)
+
+**Context:** Viral traffic load.
+
+> "We are getting hit by a massive DDoS attack on the login page"
+
+**Result:** Status turns **CRITICAL**. Shows `TrafficGraph` and "Block IP" button.
+
+### 🔵 4. The "Zero-Config" Setup
+
+**Context:** Connecting a new database.
+
+> "Connect to database https://xyz.supabase.co API_KEY:eyJhbG..."
+
+**Result:** System connects, fetches schema, and asks which tables to monitor.
+
+### 🟣 5. The "Fix It" (Rollback)
+
+**Context:** Resolving the incident.
+
+> "Initiate emergency rollback to version v2.0.4"
+
+**Result:** Timeline updates, status resolves, and error graph cleans up.
+
+---
+
+---
+
 > **"From zero to monitoring in 30 seconds. From incident to resolution in 3 minutes."**
 >
 > Built with ❤️ by [@tosif121](https://github.com/tosif121) for Tambo Hackathon 2026
