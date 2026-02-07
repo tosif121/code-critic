@@ -13,6 +13,7 @@ import Link from 'next/link';
 // Custom Hook - REPLACED WITH OFFICIAL SDK
 import { useTambo, TamboProvider } from '@tambo-ai/react';
 import { components } from '@/lib/tambo';
+import { toast } from 'react-hot-toast';
 
 const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
 
@@ -91,11 +92,21 @@ function ReviewContent({ id }: { id: string }) {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [thread?.messages, chatOpen]);
 
-  // Initialize chat if empty
+  // Initialize chat with context if empty
   useEffect(() => {
-    if (review?.status === 'complete' && (!thread || thread.messages.length === 0)) {
-      // We could send a hidden system message or just let the user start
-      // Ideally we'd add a "welcome" message locally or via SDK if supported
+    if (review?.status === 'complete' && thread && thread.messages.length === 0) {
+      const contextMessage = `SYSTEM_CONTEXT:
+The user is reviewing the following code:
+${review.code_snippet?.slice(0, 5000)}... (truncated)
+
+Issues found by the roaster:
+${issues.map((i: any) => `- ${i.title} (${i.severity}): ${i.roast}`).join('\n')}
+
+You are "Code Critic", a witty and slightly sarcastic AI assistant. Help the user fix these issues using the available tools (FixSuggestion, CodeComparison, etc.).
+If the user asks "How do I fix this?", pick the most critical issue and use the FixSuggestion widget.`;
+
+      // Send invisible context message to prime the thread
+      sendThreadMessage(contextMessage);
     }
   }, [review, thread]);
 
@@ -173,7 +184,7 @@ function ReviewContent({ id }: { id: string }) {
           <button
             onClick={() => {
               navigator.clipboard.writeText(window.location.href);
-              alert('Link copied to clipboard!');
+              toast.success('Link copied to clipboard!');
             }}
             className="flex items-center gap-2 px-4 py-2 bg-muted rounded-full text-sm font-medium hover:bg-muted/80 transition-colors"
           >
@@ -187,8 +198,8 @@ function ReviewContent({ id }: { id: string }) {
 
       {/* Floating Chat Button */}
       <motion.button
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
+        initial={{ scale: 0 }} // Start hidden
+        animate={{ scale: 1 }} // Pop in
         whileHover={{ scale: 1.1 }}
         onClick={() => setChatOpen(!chatOpen)}
         className="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full shadow-2xl flex items-center justify-center z-50 text-white"
@@ -217,32 +228,36 @@ function ReviewContent({ id }: { id: string }) {
 
             <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-900/50">
               {/* Render Messages from Tambo SDK Thread */}
-              {thread?.messages?.map((msg, idx) => (
-                <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div
-                    className={`max-w-[85%] rounded-2xl p-3 ${
-                      msg.role === 'user'
-                        ? 'bg-purple-600 text-white rounded-br-none'
-                        : 'bg-slate-800 text-slate-200 border border-slate-700 rounded-bl-none'
-                    }`}
-                  >
-                    <div className="whitespace-pre-wrap text-sm">
-                      {typeof msg.content === 'string'
-                        ? msg.content
-                        : Array.isArray(msg.content)
-                          ? msg.content.map((part: any, i: number) => {
-                              if (part.type === 'text') return <span key={i}>{part.text}</span>;
-                              return null;
-                            })
-                          : null}
-                    </div>
+              {thread?.messages
+                ?.filter((msg: any) =>
+                  typeof msg.content === 'string' ? !msg.content.startsWith('SYSTEM_CONTEXT:') : true,
+                )
+                .map((msg, idx) => (
+                  <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                    <div
+                      className={`max-w-[85%] rounded-2xl p-3 ${
+                        msg.role === 'user'
+                          ? 'bg-purple-600 text-white rounded-br-none'
+                          : 'bg-slate-800 text-slate-200 border border-slate-700 rounded-bl-none'
+                      }`}
+                    >
+                      <div className="whitespace-pre-wrap text-sm">
+                        {typeof msg.content === 'string'
+                          ? msg.content
+                          : Array.isArray(msg.content)
+                            ? msg.content.map((part: any, i: number) => {
+                                if (part.type === 'text') return <span key={i}>{part.text}</span>;
+                                return null;
+                              })
+                            : null}
+                      </div>
 
-                    {/* Render Widget if Tambo SDK decided to show one */}
-                    {/* The SDK puts the rendered React element here! */}
-                    {msg.renderedComponent && <div className="mt-3">{msg.renderedComponent}</div>}
+                      {/* Render Widget if Tambo SDK decided to show one */}
+                      {/* The SDK puts the rendered React element here! */}
+                      {msg.renderedComponent && <div className="mt-3">{msg.renderedComponent}</div>}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
 
               {/* Loading Indicator */}
               {isSending && (
