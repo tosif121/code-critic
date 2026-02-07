@@ -13,9 +13,12 @@ export async function submitUserQuery(query: string) {
   }
 }
 
+import { revalidatePath } from 'next/cache';
+
 export async function handleUserMessage(message: string) {
   try {
     const incident = await detectIncident(message);
+    revalidatePath('/'); // Force UI refresh
     return { success: true, incident };
   } catch (e) {
     console.error(e);
@@ -26,12 +29,27 @@ export async function handleUserMessage(message: string) {
 export async function getSystemState() {
   const supabase = createServerClient();
 
-  const { data: incidents } = await supabase.from('incidents').select('*').order('created_at', { ascending: false });
+  const { data: incidents } = await supabase
+    .from('incidents')
+    .select(
+      `
+      *,
+      services ( name )
+    `,
+    )
+    .order('created_at', { ascending: false });
 
   const { data: services } = await supabase.from('services').select('*').order('name');
 
+  // Map incidents to flatten service_name
+  const mappedIncidents =
+    incidents?.map((i: any) => ({
+      ...i,
+      service_name: i.services?.name || 'Unknown Service',
+    })) || [];
+
   return {
-    incidents: incidents || [],
+    incidents: mappedIncidents,
     services: services || [],
   };
 }
