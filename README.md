@@ -7,7 +7,7 @@
 
 ---
 
-## 🏆 Tambo Hackathon 2026: "The UI Strikes Back"
+## 🏆 [Tambo Hackathon](https://www.wemakedevs.org/hackathons/tambo) 2026: "The UI Strikes Back"
 
 **Code Critic** is a "Roast-as-a-Service" platform that uses **Generative UI** to brutally (or gently) critique your code.
 

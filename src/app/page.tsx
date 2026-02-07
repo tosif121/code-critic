@@ -26,11 +26,18 @@ export default function CodeCritic() {
   const [history, setHistory] = useState<RoastHistory[]>([]);
 
   useEffect(() => {
-    const stored = localStorage.getItem('roast_history');
-    if (stored) {
-      setHistory(JSON.parse(stored));
+    if (mode === 'history') {
+      const stored = localStorage.getItem('roast_history');
+      if (stored) {
+        try {
+          setHistory(JSON.parse(stored));
+        } catch (error) {
+          console.error('Failed to parse history:', error);
+          localStorage.removeItem('roast_history');
+        }
+      }
     }
-  }, []);
+  }, [mode]);
 
   const saveToHistory = (session_id: string, type: string, summary: string) => {
     const newItem: RoastHistory = {
@@ -262,6 +269,21 @@ export default function CodeCritic() {
           )}
         </motion.div>
       </main>
+
+      <footer className="py-6 text-center text-sm text-muted-foreground">
+        <p>
+          Built for{' '}
+          <a
+            href="https://www.wemakedevs.org/hackathons/tambo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-foreground hover:underline underline-offset-4"
+          >
+            Tambo Hackathon 2026
+          </a>{' '}
+          • The UI Strikes Back 🏆
+        </p>
+      </footer>
     </div>
   );
 }
