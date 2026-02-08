@@ -152,25 +152,37 @@ export default function CodeCritic() {
           {/* Input Mode Tabs */}
           <div className="flex justify-center gap-4 mb-4 flex-wrap">
             <button
-              onClick={() => setMode('code')}
+              onClick={() => {
+                setMode('code');
+                setContent('');
+              }}
               className={`flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all ${mode === 'code' ? 'bg-foreground text-background shadow-lg' : 'bg-muted text-muted-foreground hover:bg-muted/80'}`}
             >
               <FileCode className="w-4 h-4" /> Snippet
             </button>
             <button
-              onClick={() => setMode('github_file')}
+              onClick={() => {
+                setMode('github_file');
+                setContent('');
+              }}
               className={`flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all ${mode === 'github_file' ? 'bg-foreground text-background shadow-lg' : 'bg-muted text-muted-foreground hover:bg-muted/80'}`}
             >
               <Github className="w-4 h-4" /> GitHub File
             </button>
             <button
-              onClick={() => setMode('github_pr')}
+              onClick={() => {
+                setMode('github_pr');
+                setContent('');
+              }}
               className={`flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all ${mode === 'github_pr' ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/30' : 'bg-muted text-muted-foreground hover:bg-muted/80'}`}
             >
               <GitPullRequest className="w-4 h-4" /> Pull Request
             </button>
             <button
-              onClick={() => setMode('history')}
+              onClick={() => {
+                setMode('history');
+                setContent('');
+              }}
               className={`flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all ${mode === 'history' ? 'bg-orange-600 text-white shadow-lg shadow-orange-500/30' : 'bg-muted text-muted-foreground hover:bg-muted/80'}`}
             >
               <History className="w-4 h-4" /> History
