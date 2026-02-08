@@ -10,15 +10,15 @@
 
 ### 1. Code Snippet Roast
 
-![Snippet Audit](public/snippet_demo.png)
+![Snippet Audit](public/snippet_demo_output.png)
 
 ### 2. GitHub File Analysis
 
-![GitHub File](public/github_file.png)
+![GitHub File](public/github_file_demo_output.png)
 
 ### 3. Pull Request Review
 
-![Pull Request](public/pull_request.png)
+![Pull Request](public/pr_demo_output.png)
 
 ### 4. History Dashboard
 
