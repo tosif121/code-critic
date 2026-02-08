@@ -1,43 +1,28 @@
 # 🔥 Code Critic: The UI Strikes Back
 
-> **"Pull requests are boring. Code reviews are tedious. What if your UI fought back against bad code with personality?"**
+## 🎥 Watch the Demo
 
-[![Demo Video](https://img.youtube.com/vi/YOUR_ID/0.jpg)](https://youtu.be/YOUR_ID)  
-**Live Demo:** [code-critic.vercel.app](https://code-critic.vercel.app)
-
----
-
-## 🏆 [Tambo Hackathon](https://www.wemakedevs.org/hackathons/tambo) 2026: "The UI Strikes Back"
-
-**Code Critic** is a "Roast-as-a-Service" platform that uses **Generative UI** to brutally (or gently) critique your code.
-
-Instead of a boring list of lint errors, the interface **literally explodes** with custom widgets based on what's wrong with your code.
-
-**Built with:**
-
-- 🤖 **Tambo AI** (The Critic)
-- 🧠 **Perplexity API** (The Brain)
-- 🎨 **Generative UI** (The Visuals)
-- ⚡ **Supabase Realtime** (Multiplayer Roasting)
+[![Watch the Demo](https://img.youtube.com/vi/GKonsOh8SqA/0.jpg)](https://www.youtube.com/watch?v=GKonsOh8SqA)
 
 ---
 
-## 🎯 What It Does
+## 📸 Screenshots
 
-1.  **Choose Your Weapon:**
-    - **Code Snippet:** Paste any code (JS, Python, Rust, etc.).
-    - **GitHub File:** Paste a URL to a file.
-    - **GitHub PR:** Paste a Pull Request URL to analyze the **entire changeset** (The Killer Feature).
-2.  **Select Roast Level:**
-    - 🥺 **Gentle:** Constructive feedback.
-    - 😐 **Medium:** Witty sarcasm (Default).
-    - 🔥 **Savage:** Emotional damage.
-3.  **Watch the Magic:**
-    - Redirects to a unique **Session URL** (`/review/[id]`).
-    - Realtime updates show the analysis progress.
-4.  **Generative UI Explodes:**
-    - 💣 **Security Risk?** A glowing red "Security Bomb" appears.
-    - 🍝 **Bad Logic?** The "Spaghetti Meter" goes off the charts.
+### 1. Code Snippet Roast
+
+![Snippet Audit](public/snippet_demo.png)
+
+### 2. GitHub File Analysis
+
+![GitHub File](public/github_file.png)
+
+### 3. Pull Request Review
+
+![Pull Request](public/pull_request.png)
+
+### 4. History Dashboard
+
+![Roast History](public/history_dashboard.png)
 
 ---
 
